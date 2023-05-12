@@ -122,13 +122,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.prepared = False
         self.running = False
-        self.sounds = {
-            'move_tile': pygame.mixer.Sound("sounds/beep.ogg"),
-            'claim_tile':  pygame.mixer.Sound("sounds/place.ogg"),
-            'victory': pygame.mixer.Sound("sounds/win.ogg"),
-            'title_music': pygame.mixer.Sound("sounds/title_music.ogg"),
-            'loss': pygame.mixer.Sound("sounds/lose.ogg"),
-        }
+
         pygame.init()
     
     def prepare_game(self):
@@ -609,17 +603,17 @@ class Game:
 
         pygame.display.set_caption("T^3")
         
-        start_music = self.sounds['title_music']
+       
         self.n = 4
         self.mode = 0 # easy, 1: multiplayer
-        start_music.play(loops=-1)
+
         game_state = GameState.TITLE
         while True:
             if not self.running:
                 self.difficulty = modes[self.mode]
             if game_state == GameState.TITLE:
-                if self.prepared and not self.running:
-                    start_music.play(loops=-1)
+
+
                 if self.running:
                     start_txt = "CONTINUE"
                 else:
@@ -629,7 +623,7 @@ class Game:
         
             if game_state == GameState.NEWGAME:
                 self.prepare_game()
-                start_music.stop()
+    
                 game_state = self.run()
             
             if game_state == GameState.QUIT:
